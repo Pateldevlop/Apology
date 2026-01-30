@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under the Stars - My Apology</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Quattrocento:wght@400;700&family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Quattrocento', serif;
+            background: linear-gradient(to bottom, #0a0e27 0%, #1a1a3e 50%, #2d1b4e 100%);
+            color: #e8d5c4;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+        
+        /* Starry Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+        
+        .shooting-star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: linear-gradient(to right, white, transparent);
+            border-radius: 50%;
+            animation: shoot 3s linear infinite;
+        }
+        
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-300px) translateY(300px);
+                opacity: 0;
+            }
+        }
+        
+        /* Moon */
+        .moon {
+            position: fixed;
+            top: 10%;
+            right: 10%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 30% 30%, #fff9e6, #f4e4c1);
+            border-radius: 50%;
+            box-shadow: 0 0 60px rgba(255, 249, 230, 0.6),
+                        inset -10px -10px 20px rgba(200, 180, 140, 0.3);
+            animation: moonGlow 4s ease-in-out infinite;
+        }
+        
+        @keyframes moonGlow {
+            0%, 100% { box-shadow: 0 0 60px rgba(255, 249, 230, 0.6), inset -10px -10px 20px rgba(200, 180, 140, 0.3); }
+            50% { box-shadow: 0 0 80px rgba(255, 249, 230, 0.8), inset -10px -10px 20px rgba(200, 180, 140, 0.4); }
+        }
+        
+        /* Container */
+        .main-container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+        
+        .apology-container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(30, 20, 40, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 60px;
+            border: 1px solid rgba(232, 213, 196, 0.2);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid rgba(232, 213, 196, 0.3);
+            padding-bottom: 30px;
+        }
+        
+        .title {
+            font-family: 'Sacramento', cursive;
+            font-size: 5rem;
+            color: #f4d9a6;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(244, 217, 166, 0.5);
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 0 0 20px rgba(244, 217, 166, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(244, 217, 166, 0.8); }
+        }
+        
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: #c4a678;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #f4d9a6, transparent);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            margin: 40px 0;
+            position: relative;
+            animation: slideIn 1s ease-out both;
+        }
+        
+        .timeline-item:nth-child(1) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.9s; }
+        .timeline-item:nth-child(4) { animation-delay: 1.2s; }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .timeline-item:nth-child(even) {
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+        
+        .timeline-content {
+            width: 45%;
+            padding: 25px;
+            background: rgba(244, 217, 166, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(244, 217, 166, 0.2);
+            position: relative;
+        }
+        
+        .timeline-icon {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #f4d9a6, #c4a678);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a1a3e;
+            font-size: 1.5rem;
+            box-shadow: 0 0 20px rgba(244, 217, 166, 0.5);
+            z-index: 2;
+        }
+        
+        .timeline-item:nth-child(1) .timeline-icon { top: 25px; }
+        .timeline-item:nth-child(2) .timeline-icon { top: 25px; }
+        .timeline-item:nth-child(3) .timeline-icon { top: 25px; }
+        .timeline-item:nth-child(4) .timeline-icon { top: 25px; }
+        
+        .timeline-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #f4d9a6;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .timeline-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e8d5c4;
+        }
+        
+        /* Wishes Section */
+        .wishes-section {
+            margin: 50px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(244, 217, 166, 0.05), rgba(196, 166, 120, 0.05));
+            border-radius: 15px;
+            border: 1px solid rgba(244, 217, 166, 0.2);
+            animation: fadeIn 1s ease-out 1.5s both;
+        }
+        
+        .wishes-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #f4d9a6;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .wish-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .wish-card {
+            padding: 20px;
+            background: rgba(244, 217, 166, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(244, 217, 166, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .wish-card:hover {
+            background: rgba(244, 217, 166, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(244, 217, 166, 0.2);
+        }
+        
+        .wish-card i {
+            font-size: 2rem;
+            color: #f4d9a6;
+            margin-bottom: 15px;
+        }
+        
+        .wish-card p {
+            font-size: 1rem;
+            color: #e8d5c4;
+            margin: 0;
+        }
+        
+        /* Final Message */
+        .final-message {
+            text-align: center;
+            margin: 50px 0 30px;
+            padding: 40px;
+            background: rgba(244, 217, 166, 0.08);
+            border-radius: 15px;
+            animation: fadeIn 1s ease-out 1.8s both;
+        }
+        
+        .final-message p {
+            font-size: 1.3rem;
+            line-height: 2;
+            color: #e8d5c4;
+            margin-bottom: 20px;
+        }
+        
+        .signature {
+            font-family: 'Sacramento', cursive;
+            font-size: 3rem;
+            color: #f4d9a6;
+            margin-top: 30px;
+        }
+        
+        /* Button */
+        .button-container {
+            text-align: center;
+            margin-top: 40px;
+            animation: fadeIn 1s ease-out 2s both;
+        }
+        
+        .accept-btn {
+            background: linear-gradient(135deg, #f4d9a6, #c4a678);
+            color: #1a1a3e;
+            border: none;
+            padding: 18px 60px;
+            font-size: 1.3rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(244, 217, 166, 0.4);
+            transition: all 0.4s ease;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .accept-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(244, 217, 166, 0.6);
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-box {
+            background: linear-gradient(135deg, #1a1a3e, #2d1b4e);
+            padding: 60px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            border: 2px solid #f4d9a6;
+            box-shadow: 0 0 60px rgba(244, 217, 166, 0.5);
+            animation: modalAppear 0.5s ease;
+        }
+        
+        @keyframes modalAppear {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .modal-box h2 {
+            font-family: 'Sacramento', cursive;
+            font-size: 4rem;
+            color: #f4d9a6;
+            margin-bottom: 30px;
+        }
+        
+        .modal-box p {
+            font-size: 1.4rem;
+            color: #e8d5c4;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .firework {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #f4d9a6;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title { font-size: 3.5rem; }
+            .subtitle { font-size: 1rem; }
+            .apology-container { padding: 30px 20px; }
+            
+            .timeline::before { left: 20px; }
+            .timeline-content { width: calc(100% - 80px); margin-left: 60px !important; }
+            .timeline-item { text-align: left !important; }
+            .timeline-icon { left: 20px; transform: translateX(0); }
+            
+            .wish-grid { grid-template-columns: 1fr; }
+            .final-message p { font-size: 1.1rem; }
+            .signature { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="moon"></div>
+    
+    <div class="main-container">
+        <div class="apology-container">
+            <div class="header">
+                <h1 class="title">I'm Sorry, My Star</h1>
+                <p class="subtitle">A Journey Back to Your Heart</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-heart-crack"></i></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">My Regret</h3>
+                        <p class="timeline-text">
+                            Like a night without stars, my world feels empty knowing I've hurt you. 
+                            Your pain is my pain, and I carry the weight of my mistakes in my heart.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-praying-hands"></i></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">My Realization</h3>
+                        <p class="timeline-text">
+                            I now understand how thoughtless I was. You deserve someone who treasures 
+                            every moment with you, and I failed to be that person. I see it clearly now.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">My Promise</h3>
+                        <p class="timeline-text">
+                            I promise to be better, to listen more, and to cherish you the way you deserve. 
+                            Your happiness will be my priority, and your smile will be my greatest reward.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-infinity"></i></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">My Love</h3>
+                        <p class="timeline-text">
+                            You are my universe, my guiding star, and my eternal light. Without you, 
+                            I'm lost in darkness. Please let me find my way back to your heart.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wishes-section">
+                <h2 class="wishes-title">What I Wish For Us</h2>
+                <div class="wish-grid">
+                    <div class="wish-card">
+                        <i class="fas fa-heart"></i>
+                        <p>More laughter and fewer tears</p>
+                    </div>
+                    <div class="wish-card">
+                        <i class="fas fa-hands-holding"></i>
+                        <p>Understanding and patience</p>
+                    </div>
+                    <div class="wish-card">
+                        <i class="fas fa-comments"></i>
+                        <p>Open and honest communication</p>
+                    </div>
+                    <div class="wish-card">
+                        <i class="fas fa-star"></i>
+                        <p>Endless beautiful memories together</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="final-message">
+                <p>
+                    Every star in the sky reminds me of the moments we've shared. 
+                    Every breath I take carries your name. You are not just my love; 
+                    you are my everything. Please forgive me, and let us write a new 
+                    chapter together—one filled with love, trust, and happiness.
+                </p>
+                <div class="signature">Forever Yours</div>
+            </div>
+            
+            <div class="button-container">
+                <button class="accept-btn" id="acceptBtn">
+                    I Accept Your Apology ✨
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box">
+            <h2>Thank You! ✨</h2>
+            <p>
+                You've just lit up my entire universe! Your forgiveness means everything to me, 
+                and I promise to spend every day proving that I'm worthy of your love and trust.
+            </p>
+            <p style="font-size: 1.6rem; color: #f4d9a6; margin-top: 30px;">
+                <strong>I love you to the moon and back! 🌙💫</strong>
+            </p>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Create stars
+            function createStars() {
+                const container = $('#stars');
+                for (let i = 0; i < 200; i++) {
+                    const star = $('<div class="star"></div>');
+                    star.css({
+                        left: Math.random() * 100 + '%',
+                        top: Math.random() * 100 + '%',
+                        animationDelay: Math.random() * 3 + 's',
+                        animationDuration: (Math.random() * 2 + 2) + 's'
+                    });
+                    container.append(star);
+                }
+            }
+            
+            // Create shooting stars
+            function createShootingStar() {
+                const star = $('<div class="shooting-star"></div>');
+                star.css({
+                    left: Math.random() * 100 + '%',
+                    top: Math.random() * 50 + '%',
+                    width: Math.random() * 100 + 50 + 'px'
+                });
+                $('#stars').append(star);
+                
+                setTimeout(() => star.remove(), 3000);
+            }
+            
+            createStars();
+            setInterval(createShootingStar, 3000);
+            
+            // Button click
+            $('#acceptBtn').on('click', function() {
+                // Create fireworks
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => {
+                        const firework = $('<div class="firework"></div>');
+                        firework.css({
+                            left: '50%',
+                            top: '50%'
+                        });
+                        $('body').append(firework);
+                        
+                        const angle = (Math.PI * 2 * i) / 50;
+                        const distance = Math.random() * 300 + 200;
+                        
+                        firework.animate({
+                            left: '+=' + (Math.cos(angle) * distance) + 'px',
+                            top: '+=' + (Math.sin(angle) * distance) + 'px',
+                            opacity: 0
+                        }, 1500, function() {
+                            $(this).remove();
+                        });
+                    }, i * 20);
+                }
+                
+                setTimeout(() => {
+                    $('#modalOverlay').css('display', 'flex');
+                }, 800);
+            });
+            
+            $('#modalOverlay').on('click', function(e) {
+                if (e.target === this) {
+                    $(this).fadeOut(300);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

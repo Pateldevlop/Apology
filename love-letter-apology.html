@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Love Letter - My Deepest Apology</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Alex+Brush&family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'EB Garamond', serif;
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 50%, #d4c5b9 100%);
+            color: #3e2723;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        /* Vintage Paper Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 90, 43, 0.03) 2px, rgba(139, 90, 43, 0.03) 4px);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* Floating Rose Petals */
+        .petal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .rose-petal {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(ellipse at center, #d4506c 0%, #d4506c 40%, transparent 70%);
+            border-radius: 50% 0 50% 50%;
+            opacity: 0;
+            animation: petalFall 15s infinite ease-in;
+        }
+        
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        /* Main Container */
+        .letter-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            animation: unfold 2s ease-out;
+        }
+        
+        @keyframes unfold {
+            0% {
+                transform: scaleY(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+        
+        /* Paper Effect */
+        .letter-paper {
+            background: 
+                linear-gradient(to bottom, #faf8f3 0%, #f5f2ea 100%);
+            padding: 80px 60px;
+            box-shadow: 
+                0 0 1px rgba(0,0,0,0.1),
+                0 10px 40px rgba(139, 90, 43, 0.3),
+                inset 0 0 100px rgba(139, 90, 43, 0.05);
+            position: relative;
+            border: 1px solid rgba(139, 90, 43, 0.2);
+        }
+        
+        .letter-paper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    transparent,
+                    transparent 31px,
+                    rgba(139, 90, 43, 0.1) 31px,
+                    rgba(139, 90, 43, 0.1) 32px
+                );
+            pointer-events: none;
+        }
+        
+        .letter-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Wax Seal */
+        .wax-seal {
+            position: absolute;
+            top: -40px;
+            right: 60px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #c41e3a 0%, #8b0000 70%);
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: sealStamp 1.5s ease-out 0.5s both;
+        }
+        
+        @keyframes sealStamp {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            60% {
+                transform: translateY(10px) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0) rotate(180deg);
+                opacity: 1;
+            }
+        }
+        
+        .wax-seal i {
+            font-size: 2rem;
+            color: #faf8f3;
+        }
+        
+        /* Header */
+        .letter-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(139, 90, 43, 0.2);
+            animation: fadeIn 1s ease-out 1s both;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .letter-title {
+            font-family: 'Alex Brush', cursive;
+            font-size: 5rem;
+            color: #8b4513;
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+        
+        .letter-date {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            color: #5d4037;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+        
+        /* Salutation */
+        .salutation {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.5rem;
+            color: #3e2723;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out 1.3s both;
+        }
+        
+        /* Letter Body */
+        .letter-body {
+            animation: fadeIn 1s ease-out 1.6s both;
+        }
+        
+        .letter-paragraph {
+            font-size: 1.25rem;
+            line-height: 2;
+            color: #3e2723;
+            margin-bottom: 30px;
+            text-align: justify;
+            text-indent: 40px;
+        }
+        
+        .letter-paragraph:first-letter {
+            font-size: 3.5rem;
+            font-family: 'Alex Brush', cursive;
+            color: #8b4513;
+            float: left;
+            line-height: 0.8;
+            margin-right: 8px;
+            margin-top: 8px;
+        }
+        
+        .emphasis {
+            font-style: italic;
+            color: #d4506c;
+            font-weight: 600;
+        }
+        
+        /* Quote Box */
+        .love-quote {
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(212, 80, 108, 0.05);
+            border-left: 4px solid #d4506c;
+            border-right: 4px solid #d4506c;
+            position: relative;
+            animation: fadeIn 1s ease-out 1.9s both;
+        }
+        
+        .love-quote::before,
+        .love-quote::after {
+            content: '"';
+            font-family: 'Alex Brush', cursive;
+            font-size: 4rem;
+            color: #d4506c;
+            position: absolute;
+            opacity: 0.3;
+        }
+        
+        .love-quote::before {
+            top: -10px;
+            left: 10px;
+        }
+        
+        .love-quote::after {
+            bottom: -40px;
+            right: 10px;
+        }
+        
+        .love-quote p {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #5d4037;
+            text-align: center;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Reasons Section */
+        .reasons-section {
+            margin: 50px 0;
+            animation: fadeIn 1s ease-out 2.2s both;
+        }
+        
+        .reasons-title {
+            font-family: 'Alex Brush', cursive;
+            font-size: 3rem;
+            color: #8b4513;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .reason-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(139, 69, 19, 0.03);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .reason-item:hover {
+            background: rgba(139, 69, 19, 0.08);
+            transform: translateX(10px);
+        }
+        
+        .reason-number {
+            font-family: 'Alex Brush', cursive;
+            font-size: 2.5rem;
+            color: #d4506c;
+            min-width: 50px;
+            line-height: 1;
+        }
+        
+        .reason-text {
+            font-size: 1.2rem;
+            color: #3e2723;
+            line-height: 1.8;
+            padding-top: 8px;
+        }
+        
+        /* Closing */
+        .letter-closing {
+            margin-top: 60px;
+            animation: fadeIn 1s ease-out 2.5s both;
+        }
+        
+        .closing-paragraph {
+            font-size: 1.25rem;
+            line-height: 2;
+            color: #3e2723;
+            text-align: justify;
+            margin-bottom: 40px;
+        }
+        
+        .signature-section {
+            text-align: right;
+            margin-top: 50px;
+        }
+        
+        .yours-text {
+            font-size: 1.2rem;
+            color: #5d4037;
+            margin-bottom: 10px;
+        }
+        
+        .signature-name {
+            font-family: 'Alex Brush', cursive;
+            font-size: 3.5rem;
+            color: #8b4513;
+            margin-bottom: 10px;
+        }
+        
+        .signature-line {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #8b4513);
+            margin-left: auto;
+            margin-bottom: 20px;
+        }
+        
+        /* Hearts */
+        .hearts-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+        }
+        
+        .hearts-row i {
+            font-size: 1.5rem;
+            color: #d4506c;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        
+        .hearts-row i:nth-child(2) { animation-delay: 0.2s; }
+        .hearts-row i:nth-child(3) { animation-delay: 0.4s; }
+        .hearts-row i:nth-child(4) { animation-delay: 0.6s; }
+        .hearts-row i:nth-child(5) { animation-delay: 0.8s; }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+        }
+        
+        /* Button */
+        .accept-button {
+            text-align: center;
+            margin-top: 50px;
+            animation: fadeIn 1s ease-out 2.8s both;
+        }
+        
+        .accept-btn {
+            background: linear-gradient(135deg, #d4506c, #8b4513);
+            color: #faf8f3;
+            border: 3px solid #8b4513;
+            padding: 20px 60px;
+            font-size: 1.4rem;
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.4);
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .accept-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .accept-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+        
+        .accept-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.6);
+        }
+        
+        .accept-btn span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Modal */
+        .response-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(62, 39, 35, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-paper {
+            background: linear-gradient(to bottom, #faf8f3, #f5f2ea);
+            padding: 60px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 2px solid #8b4513;
+            animation: unfoldModal 0.8s ease;
+            position: relative;
+        }
+        
+        @keyframes unfoldModal {
+            0% {
+                transform: scaleY(0) rotateX(90deg);
+                opacity: 0;
+            }
+            100% {
+                transform: scaleY(1) rotateX(0deg);
+                opacity: 1;
+            }
+        }
+        
+        .modal-paper h2 {
+            font-family: 'Alex Brush', cursive;
+            font-size: 4rem;
+            color: #8b4513;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .modal-paper p {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.3rem;
+            color: #3e2723;
+            line-height: 2;
+            text-align: center;
+        }
+        
+        .modal-hearts {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+        }
+        
+        .modal-hearts i {
+            font-size: 2rem;
+            color: #d4506c;
+            animation: heartPulse 1s ease-in-out infinite;
+        }
+        
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .letter-paper { padding: 40px 20px; }
+            .letter-title { font-size: 3.5rem; }
+            .letter-paragraph { font-size: 1.1rem; text-indent: 20px; }
+            .salutation { font-size: 1.2rem; }
+            .reasons-title { font-size: 2.5rem; }
+            .signature-name { font-size: 2.5rem; }
+            .wax-seal { right: 20px; width: 60px; height: 60px; }
+            .wax-seal i { font-size: 1.5rem; }
+            .accept-btn { padding: 15px 40px; font-size: 1.1rem; }
+            .modal-paper { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="petal-container" id="petalContainer"></div>
+    
+    <div class="letter-container">
+        <div class="wax-seal">
+            <i class="fas fa-heart"></i>
+        </div>
+        
+        <div class="letter-paper">
+            <div class="letter-content">
+                <div class="letter-header">
+                    <h1 class="letter-title">My Dearest Love</h1>
+                    <p class="letter-date">Written from the depths of my heart</p>
+                </div>
+                
+                <p class="salutation">To the one who holds my heart,</p>
+                
+                <div class="letter-body">
+                    <p class="letter-paragraph">
+                        As I sit here writing this letter, my heart is heavy with regret and longing. 
+                        The thought of the pain I've caused you haunts me day and night, and I cannot 
+                        find peace knowing that my actions have brought tears to those beautiful eyes 
+                        that I love so dearly.
+                    </p>
+                    
+                    <p class="letter-paragraph">
+                        You are <span class="emphasis">the most precious person in my life</span>, and yet 
+                        I failed to treat you with the love and respect you deserve. I was thoughtless, 
+                        careless, and blind to how my words and actions would affect you. For this, I am 
+                        truly and deeply sorry.
+                    </p>
+                    
+                    <div class="love-quote">
+                        <p>
+                            "In your eyes, I found my home. In your smile, I found my peace. 
+                            In your love, I found myself. Please let me find my way back to you."
+                        </p>
+                    </div>
+                    
+                    <p class="letter-paragraph">
+                        I have spent countless hours reflecting on my mistakes, and I now understand 
+                        how much I took for granted. Your <span class="emphasis">patience, kindness, 
+                        and unconditional love</span> are gifts that I should have cherished every single 
+                        day. Instead, I was foolish enough to let my pride and stubbornness hurt the one 
+                        person who matters most to me.
+                    </p>
+                    
+                    <div class="reasons-section">
+                        <h3 class="reasons-title">Why I Love You & Why I'm Sorry</h3>
+                        
+                        <div class="reason-item">
+                            <span class="reason-number">1.</span>
+                            <p class="reason-text">
+                                <strong>Your smile lights up my world</strong> - I'm sorry I ever did anything 
+                                to take that smile away. I promise to be the reason you smile every day.
+                            </p>
+                        </div>
+                        
+                        <div class="reason-item">
+                            <span class="reason-number">2.</span>
+                            <p class="reason-text">
+                                <strong>Your kindness inspires me</strong> - I'm sorry I didn't show you the 
+                                same kindness in return. I will treat you with the gentleness you deserve.
+                            </p>
+                        </div>
+                        
+                        <div class="reason-item">
+                            <span class="reason-number">3.</span>
+                            <p class="reason-text">
+                                <strong>Your love completes me</strong> - I'm sorry I made you question it. 
+                                I will spend every day proving that your love is the greatest gift of my life.
+                            </p>
+                        </div>
+                        
+                        <div class="reason-item">
+                            <span class="reason-number">4.</span>
+                            <p class="reason-text">
+                                <strong>Your presence brings me peace</strong> - I'm sorry I created chaos 
+                                instead. I will be your safe haven, your comfort, and your peace.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <p class="letter-paragraph">
+                        My love, life without you is like a book without words, a song without melody, 
+                        a sky without stars. You give meaning to my existence, and without you, I am 
+                        incomplete. I'm not asking for your forgiveness because I deserve it—I know I 
+                        don't. I'm asking because <span class="emphasis">I cannot imagine my life without 
+                        you in it</span>.
+                    </p>
+                    
+                    <p class="letter-paragraph">
+                        I promise to be more understanding, more patient, and more attentive to your needs. 
+                        I promise to listen when you speak and to value your feelings above all else. Most 
+                        importantly, I promise to love you with every fiber of my being and to never again 
+                        give you a reason to doubt how much you mean to me.
+                    </p>
+                </div>
+                
+                <div class="hearts-row">
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i>
+                </div>
+                
+                <div class="letter-closing">
+                    <p class="closing-paragraph">
+                        Please find it in your heart to forgive me. Give me a chance to make things right, 
+                        to prove to you that my love is real and my promises are true. You are my yesterday, 
+                        my today, and all of my tomorrows. I love you more than words can express.
+                    </p>
+                    
+                    <div class="signature-section">
+                        <p class="yours-text">Forever and always yours,</p>
+                        <div class="signature-line"></div>
+                        <div class="signature-name">With All My Love</div>
+                        <p class="yours-text" style="font-style: italic; margin-top: 10px;">♥ Your One and Only ♥</p>
+                    </div>
+                </div>
+                
+                <div class="accept-button">
+                    <button class="accept-btn" id="acceptBtn">
+                        <span>I Forgive You, My Love</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="response-modal" id="responseModal">
+        <div class="modal-paper">
+            <h2>My Heart is Whole Again!</h2>
+            <div class="modal-hearts">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+            </div>
+            <p>
+                Thank you for giving me another chance! Your forgiveness has lifted the weight 
+                from my heart. I promise to cherish you, respect you, and love you more deeply 
+                than ever before. You are my everything, and I will spend every moment proving 
+                that you made the right choice.
+            </p>
+            <p style="margin-top: 25px; font-size: 1.5rem; color: #d4506c; font-weight: 600;">
+                I love you with all my heart! ♥
+            </p>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Create falling rose petals
+            function createPetal() {
+                const petal = $('<div class="rose-petal"></div>');
+                petal.css({
+                    left: Math.random() * 100 + '%',
+                    animationDuration: (Math.random() * 10 + 10) + 's',
+                    animationDelay: Math.random() * 5 + 's'
+                });
+                $('#petalContainer').append(petal);
+                
+                setTimeout(() => petal.remove(), 20000);
+            }
+            
+            // Generate petals
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => createPetal(), i * 500);
+            }
+            
+            setInterval(createPetal, 2000);
+            
+            // Button click handler
+            $('#acceptBtn').on('click', function() {
+                // Create rose explosion
+                for (let i = 0; i < 40; i++) {
+                    setTimeout(() => {
+                        const rose = $('<i class="fas fa-rose"></i>').css({
+                            position: 'fixed',
+                            left: '50%',
+                            top: '50%',
+                            fontSize: '25px',
+                            color: '#d4506c',
+                            pointerEvents: 'none',
+                            zIndex: 9999
+                        });
+                        
+                        $('body').append(rose);
+                        
+                        const angle = (Math.PI * 2 * i) / 40;
+                        const distance = Math.random() * 250 + 150;
+                        
+                        rose.animate({
+                            left: '+=' + (Math.cos(angle) * distance) + 'px',
+                            top: '+=' + (Math.sin(angle) * distance) + 'px',
+                            opacity: 0
+                        }, 2000, function() {
+                            $(this).remove();
+                        });
+                    }, i * 40);
+                }
+                
+                // Show modal
+                setTimeout(() => {
+                    $('#responseModal').css('display', 'flex');
+                }, 1000);
+            });
+            
+            // Close modal
+            $('#responseModal').on('click', function(e) {
+                if (e.target === this) {
+                    $(this).fadeOut(300);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
